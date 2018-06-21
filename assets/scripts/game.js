@@ -12,15 +12,15 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad () {
+    onLoad() {
         console.log('load game');
     },
 
-    start () {
+    start() {
 
     },
 
-    update (dt) {
+    update(dt) {
         this.head.updateHead(dt);
     },
 

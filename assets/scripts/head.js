@@ -9,10 +9,21 @@ cc.Class({
             default: null,
             type: cc.Prefab,
         },
-        me: {
+        player: {
             default: null,
             type: cc.Node,
         },
+        background: {
+            default: null,
+            type: cc.Node,
+        },
+        container: {
+            default: null,
+            type: cc.Node,
+        },
+        headCurrentPositionsIncrement: [],
+        currentX: 0,
+        currentY: 0,
         bodies: [],
         disabledBodies: [],
         _constDirectionLeft: 'left',
@@ -30,6 +41,10 @@ cc.Class({
 
         console.log(this.node.getPosition());
         console.log(this.node);
+
+        console.log(this.player.parent);
+        console.log(this.background);
+
 
         this.increaseBody();
 
@@ -58,6 +73,7 @@ cc.Class({
         }
         this.moveAction(dt);
         this.recordCurrentPosition();
+        this.notifyContainerUpdatePositions(dt);
     },
 
     updateBodies(dt) {
@@ -65,8 +81,18 @@ cc.Class({
     },
 
     moveAction(dt) {
-        this.node.x += this.getDistanceX() * dt;
-        this.node.y += this.getDistanceY() * dt;
+        let incrementX = this.getDistanceX() * dt;
+        let incrementY = this.getDistanceY() * dt;
+
+        this.headCurrentPositionsIncrement.push({
+            x: incrementX,
+            y: incrementY
+        });
+        this.currentX += incrementX;
+        this.currentY += incrementY;
+
+        this.node.x += incrementX;
+        this.node.y += incrementY;
     },
 
     getDistanceX() {
@@ -98,19 +124,21 @@ cc.Class({
 
     clearCurrentPositions() {
         this.currentTimePositions = [];
+        this.headCurrentPositionsIncrement = [];
     },
 
     recordCurrentPosition() {
+        let _this = this;
         this.currentTimePositions.push({
-            x: this.node.x,
-            y: this.node.y
+            x: _this.currentX,
+            y: _this.currentY
         });
     },
 
     increaseBody() {
         let bodyNode = cc.instantiate(this.body);
 
-        this.me.addChild(bodyNode);
+        this.player.addChild(bodyNode);
         this.disabledBodies.push(bodyNode);
 
         bodyNode.setPosition(0, 0);
@@ -153,6 +181,14 @@ cc.Class({
         if (bodyCpn.hasNextBody()) {
             this.notifyBodiesUpdatePositions(bodyCpn.nextBody.getComponent('body'), bodyCpn.historyTimePositions);
         }
+    },
+
+    // notifyBackgroundUpdatePositions(dt) {
+    //     this.background.getComponent('background').updateBackground(dt);
+    // },
+
+    notifyContainerUpdatePositions(dt) {
+        this.container.getComponent('container').updateContainer(dt);
     },
 
     setInputControl() {

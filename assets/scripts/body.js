@@ -60,7 +60,6 @@ cc.Class({
         let index = this.currentTimePositions.length - 1 > this.currentTimePositionsIndex ? this.currentTimePositionsIndex++ : this.currentTimePositionsIndex;
         let position = this.currentTimePositions[index];
 
-
         if (position) {
             this.node.setPosition(position.x, position.y);
         }
