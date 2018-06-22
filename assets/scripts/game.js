@@ -1,13 +1,26 @@
-const
-    head = require('head'),
-    body = require('body');
+const player = require('player');
 
 cc.Class({
     extends: cc.Component,
 
     properties: {
-        head,
-        body,
+        player,
+        otherHead: {
+            default: null,
+            type: cc.Prefab,
+        },
+        body: {
+            default: null,
+            type: cc.Prefab,
+        },
+        otherPlayer: {
+            default: null,
+            type: cc.SpriteFrame,
+        },
+        container: {
+            default: null,
+            type: cc.Node,
+        },
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -17,11 +30,10 @@ cc.Class({
     },
 
     start() {
-
     },
 
     update(dt) {
-        this.head.updateHead(dt);
+        this.player.updatePlayer(dt);
     },
 
     // methods

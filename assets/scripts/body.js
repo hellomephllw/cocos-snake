@@ -1,9 +1,9 @@
 const
-    baseNode = require('baseNode'),
+    baseBody = require('baseBody'),
     head = require('head');
 
 cc.Class({
-    extends: baseNode,
+    extends: baseBody,
 
     properties: {
         belongHead: null,

@@ -1,5 +1,7 @@
+const baseRole = require('baseRole');
+
 cc.Class({
-    extends: cc.Component,
+    extends: baseRole,
 
     properties: {},
 
