@@ -9,6 +9,7 @@ cc.Class({
         _constDirectionTop: 'top',
         _constDirectionBottom: 'bottom',
         direction: '',
+        positionIncrementPool: [],
     },
 
     // LIFE-CYCLE CALLBACKS:

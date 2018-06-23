@@ -92,8 +92,8 @@
     },
     "_rotationX": 0,
     "_rotationY": 0,
-    "_scaleX": 1,
-    "_scaleY": 1,
+    "_scaleX": 0.3,
+    "_scaleY": 0.3,
     "_position": {
       "__type__": "cc.Vec2",
       "x": 480,
@@ -216,7 +216,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 0,
+      "x": 1,
       "y": 0
     },
     "_skewX": 0,
@@ -642,9 +642,6 @@
     "_constDirectionTop": "top",
     "_constDirectionBottom": "bottom",
     "direction": "",
-    "headCurrentPositionsIncrement": [],
-    "currentX": 0,
-    "currentY": 0,
     "speed": 1
   },
   {
@@ -724,10 +721,7 @@
     "body": {
       "__uuid__": "d9e8289c-c4a6-4c79-be65-6744306f6a34"
     },
-    "container": {
-      "__id__": 3
-    },
-    "players": []
+    "otherPlayers": []
   },
   {
     "__type__": "9b9a93mB+pFipWRubtWgdhU",

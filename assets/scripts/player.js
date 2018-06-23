@@ -41,6 +41,10 @@ cc.Class({
         this.notifyContainerUpdatePositions(dt);
     },
 
+    playerInterval(interval) {
+        this.head.generatePositionIncrement(interval);
+    },
+
     setInputControl() {
         let headCpn = this.head.getComponent('head');
         // 添加键盘事件监听

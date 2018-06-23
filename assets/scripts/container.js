@@ -26,7 +26,7 @@ cc.Class({
 
     moveAction(dt) {
         let headPositionsIncrement = this.head.getComponent('head').headCurrentPositionsIncrement;
-        let headPositionIncrement = headPositionsIncrement[headPositionsIncrement.length - 1];
+        let headPositionIncrement = headPositionsIncrement.shift();
 
         this.node.x -= headPositionIncrement.x;
         this.node.y -= headPositionIncrement.y;

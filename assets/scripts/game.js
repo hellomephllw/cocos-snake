@@ -41,6 +41,8 @@ cc.Class({
         };
 
         this.otherPlayer.getComponent('otherPlayer').create(data);
+
+        this.gameGlobalInterval();
     },
 
     update(dt) {
@@ -48,4 +50,25 @@ cc.Class({
     },
 
     // methods
+    gameGlobalInterval() {
+        let _this = this;
+        let interval = 0.016;
+        let startTime = new Date().getTime();
+        let timer = setTimeout(loop, interval * 1000);
+        function loop() {
+            clearTimeout(timer);
+
+            let nextInterval = 0;
+            let currTime = new Date().getTime();
+            let intervalTime = currTime - startTime;
+            if (intervalTime < interval * 1000) {
+                nextInterval = interval * 1000 - intervalTime;
+            }
+
+            _this.player.playerInterval(interval);
+
+            timer = setTimeout(loop, nextInterval);
+        }
+    },
+
 });

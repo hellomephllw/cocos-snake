@@ -36,22 +36,30 @@ cc.Class({
             this.clearAccumulativeCount();
         }
         this.moveAction(dt);
-        this.recordCurrentPosition();
+    },
+
+    generatePositionIncrement(interval) {
+        this.positionIncrementPool.push({
+            x: this.getDistanceX() * interval,
+            y: this.getDistanceY() * interval,
+        });
     },
 
     moveAction(dt) {
-        let incrementX = this.getDistanceX() * dt;
-        let incrementY = this.getDistanceY() * dt;
+        if (this.positionIncrementPool && this.positionIncrementPool.length > 0) {
+            let nextPosition = this.positionIncrementPool.shift();
+            let incrementX = nextPosition.x;
+            let incrementY = nextPosition.y;
 
-        this.headCurrentPositionsIncrement.push({
-            x: incrementX,
-            y: incrementY
-        });
-        this.currentX += incrementX;
-        this.currentY += incrementY;
+            this.headCurrentPositionsIncrement.push(nextPosition);
+            this.currentX += incrementX;
+            this.currentY += incrementY;
 
-        this.node.x += incrementX;
-        this.node.y += incrementY;
+            this.node.x += incrementX;
+            this.node.y += incrementY;
+
+            this.recordCurrentPosition();
+        }
     },
 
     getDistanceX() {
@@ -83,9 +91,15 @@ cc.Class({
 
     changeDirection(direction) {
         this.direction = direction;
+        this.clearPositionIncrementPool();
+    },
+
+    clearPositionIncrementPool() {
+        this.positionIncrementPool = [];
     },
 
     clearCurrentPositions() {
+        console.log(this.currentTimePositions);
         this.currentTimePositions = [];
         this.headCurrentPositionsIncrement = [];
     },

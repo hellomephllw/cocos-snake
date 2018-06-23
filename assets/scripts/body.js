@@ -9,7 +9,7 @@ cc.Class({
         belongHead: null,
         beforeBody: null,
         nextBody: null,
-        currentTimePositionsIndex: 0
+        currentTimePositionsIndex: 0,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -43,6 +43,7 @@ cc.Class({
 
     updateCurrentPositions(newPositions) {
         this.currentTimePositions = newPositions;
+        this.currentTimePositions.map(position => this.runningPositions.push(position));
     },
 
     updateCurrentTimePositionsIndex() {
@@ -66,8 +67,7 @@ cc.Class({
     },
 
     moveAction() {
-        let index = this.currentTimePositions.length - 1 > this.currentTimePositionsIndex ? this.currentTimePositionsIndex++ : this.currentTimePositionsIndex;
-        let position = this.currentTimePositions[index];
+        let position = this.runningPositions.shift();
 
         if (position) {
             this.node.setPosition(position.x, position.y);

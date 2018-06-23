@@ -3,7 +3,9 @@ const baseRole = require('baseRole');
 cc.Class({
     extends: baseRole,
 
-    properties: {},
+    properties: {
+        runningPositions: []
+    },
 
     // LIFE-CYCLE CALLBACKS:
 
