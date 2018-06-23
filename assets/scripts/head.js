@@ -37,10 +37,6 @@ cc.Class({
         }
         this.moveAction(dt);
         this.recordCurrentPosition();
-        // console.log(this.currentTimePositions);
-        // if (this.currentTimePositions.length === 30) {
-        //     console.log(JSON.stringify(this.currentTimePositions));
-        // }
     },
 
     moveAction(dt) {

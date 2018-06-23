@@ -23,4 +23,8 @@ cc.Class({
         bodyNode.setPosition(0, 0);
     },
 
+    updateBodies(dt, bodies) {
+        bodies.map(bodyNode => bodyNode.getComponent('body').updateBody(dt));
+    },
+
 });

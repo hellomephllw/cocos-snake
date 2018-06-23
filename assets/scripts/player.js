@@ -36,7 +36,7 @@ cc.Class({
 
     // methods
     updatePlayer(dt) {
-        this.updateBodies(dt);
+        this.updateBodies(dt, this.bodies);
         this.head.updateHead(dt);
         this.notifyContainerUpdatePositions(dt);
     },
@@ -99,10 +99,6 @@ cc.Class({
         if (bodyCpn.hasNextBody()) {
             this.notifyBodiesUpdatePositions(bodyCpn.nextBody.getComponent('body'), bodyCpn.historyTimePositions);
         }
-    },
-
-    updateBodies(dt) {
-        this.bodies.map(bodyNode => bodyNode.getComponent('body').updateBody(dt));
     },
 
     notifyContainerUpdatePositions(dt) {
