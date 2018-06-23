@@ -7,7 +7,7 @@ cc.Class({
         headCurrentPositionsIncrement: [],
         currentX: 0,
         currentY: 0,
-        speed: 1
+        speed: 1,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -32,54 +32,28 @@ cc.Class({
             playerCpn.activeOneBody();
             this.updateHistoryPositions();
             this.clearCurrentPositions();
-            playerCpn.notifyFirstBodyUpdatePositions();
+            this.clearHeadCurrentPositionsIncrement();
+            playerCpn.notifyFirstBodyToUpdatePositions();
             this.clearAccumulativeCount();
         }
         this.moveAction(dt);
     },
 
-    generatePositionIncrement(interval) {
-        this.positionIncrementPool.push({
-            x: this.getDistanceX() * interval,
-            y: this.getDistanceY() * interval,
-        });
-    },
-
     moveAction(dt) {
         if (this.positionIncrementPool && this.positionIncrementPool.length > 0) {
-            let nextPosition = this.positionIncrementPool.shift();
-            let incrementX = nextPosition.x;
-            let incrementY = nextPosition.y;
+            let nextPositionIncrement = this.positionIncrementPool.shift();
 
-            this.headCurrentPositionsIncrement.push(nextPosition);
+            this.recordCurrentPositionIncrement(nextPositionIncrement);
+
+            let incrementX = nextPositionIncrement.x;
+            let incrementY = nextPositionIncrement.y;
             this.currentX += incrementX;
             this.currentY += incrementY;
-
             this.node.x += incrementX;
             this.node.y += incrementY;
 
             this.recordCurrentPosition();
         }
-    },
-
-    getDistanceX() {
-        if (this.direction === this._constDirectionLeft) {
-            return -1 * this.speed;
-        }
-        if (this.direction === this._constDirectionRight) {
-            return this.speed;
-        }
-        return 0;
-    },
-
-    getDistanceY() {
-        if (this.direction === this._constDirectionTop) {
-            return this.speed;
-        }
-        if (this.direction === this._constDirectionBottom) {
-            return -1 * this.speed;
-        }
-        return 0;
     },
 
     initDirection() {
@@ -94,22 +68,16 @@ cc.Class({
         this.clearPositionIncrementPool();
     },
 
+    clearHeadCurrentPositionsIncrement() {
+        this.headCurrentPositionsIncrement = [];
+    },
+
     clearPositionIncrementPool() {
         this.positionIncrementPool = [];
     },
 
-    clearCurrentPositions() {
-        console.log(this.currentTimePositions);
-        this.currentTimePositions = [];
-        this.headCurrentPositionsIncrement = [];
-    },
-
-    recordCurrentPosition() {
-        let _this = this;
-        this.currentTimePositions.push({
-            x: _this.currentX,
-            y: _this.currentY
-        });
+    recordCurrentPositionIncrement(nextPositionIncrement) {
+        this.headCurrentPositionsIncrement.push(nextPositionIncrement);
     },
 
 });

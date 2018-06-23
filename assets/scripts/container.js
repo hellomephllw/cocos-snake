@@ -26,9 +26,11 @@ cc.Class({
 
     moveAction(dt) {
         let headPositionsIncrement = this.head.getComponent('head').headCurrentPositionsIncrement;
-        let headPositionIncrement = headPositionsIncrement.shift();
+        if (headPositionsIncrement && headPositionsIncrement.length > 0) {
+            let headPositionIncrement = headPositionsIncrement.shift();
 
-        this.node.x -= headPositionIncrement.x;
-        this.node.y -= headPositionIncrement.y;
+            this.node.x -= headPositionIncrement.x;
+            this.node.y -= headPositionIncrement.y;
+        }
     },
 });

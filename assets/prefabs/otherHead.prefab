@@ -99,10 +99,17 @@
     "_enabled": true,
     "currentTimePositions": [],
     "historyTimePositions": [],
-    "bodyDelayTime": 0.3,
+    "bodyDelayTime": 0.5,
     "accumulativeCount": 0,
-    "body": null,
-    "player": null
+    "_constDirectionLeft": "left",
+    "_constDirectionRight": "right",
+    "_constDirectionTop": "top",
+    "_constDirectionBottom": "bottom",
+    "direction": "",
+    "positionIncrementPool": [],
+    "currentX": 0,
+    "currentY": 0,
+    "speed": 150
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -110,7 +117,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "ee7902a5-b4eb-4212-b440-dab7046bb4d4"
     },
     "fileId": "beLvaU/wdETb0bfPQEErHW",
     "sync": false

@@ -1,10 +1,13 @@
-const player = require('player');
+const
+    player = require('player'),
+    otherPlayer = require('otherPlayer');
 
 cc.Class({
     extends: cc.Component,
 
     properties: {
         player,
+        otherPlayer,
         otherHead: {
             default: null,
             type: cc.Prefab,
@@ -12,10 +15,6 @@ cc.Class({
         body: {
             default: null,
             type: cc.Prefab,
-        },
-        otherPlayer: {
-            default: null,
-            type: cc.Node,
         },
         container: {
             default: null,
@@ -40,18 +39,21 @@ cc.Class({
             ]
         };
 
-        this.otherPlayer.getComponent('otherPlayer').create(data);
+        this.otherPlayer.create(data);
 
-        this.gameGlobalInterval();
+        this.gameGlobalInterval(interval => {
+            this.player.playerInterval(interval);
+            this.otherPlayer.playerInterval(interval);
+        });
     },
 
     update(dt) {
         this.player.updatePlayer(dt);
+        this.otherPlayer.updateOtherPlayers(dt);
     },
 
     // methods
-    gameGlobalInterval() {
-        let _this = this;
+    gameGlobalInterval(callback) {
         let interval = 0.016;
         let startTime = new Date().getTime();
         let timer = setTimeout(loop, interval * 1000);
@@ -65,7 +67,7 @@ cc.Class({
                 nextInterval = interval * 1000 - intervalTime;
             }
 
-            _this.player.playerInterval(interval);
+            callback(interval);
 
             timer = setTimeout(loop, nextInterval);
         }

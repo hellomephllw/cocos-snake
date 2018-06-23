@@ -27,11 +27,16 @@ cc.Class({
     update(dt) {},
 
     // methods
-    updateOtherPlayers() {
+    updateOtherPlayers(dt) {
         this.otherPlayers.map(otherPlayer => {
-            let otherHeadCpn = otherPlayer.head.getComponent('otherHead');
-            otherHeadCpn.updateHead();
-            this.updateBodies();
+            this.updateBodies(dt, otherPlayer.bodies);
+            otherPlayer.head.getComponent('otherHead').updateHead(dt, otherPlayer);
+        });
+    },
+
+    playerInterval(interval) {
+        this.otherPlayers.map(otherPlayer => {
+            otherPlayer.head.getComponent('otherHead').generatePositionIncrement(interval);
         });
     },
 
@@ -110,8 +115,44 @@ cc.Class({
         }
     },
 
-    updateBodies() {
+    //todo
+    activeOneBody(otherPlayer) {
+        if (otherPlayer.disabledBodies.length > 0) {
+            let newBody = otherPlayer.disabledBodies.shift();
+            let newBodyCpn = newBody.getComponent('body');
+            let lastBody = otherPlayer.bodies[otherPlayer.bodies.length - 1];
 
+            otherPlayer.bodies.push(newBody);
+
+            if (otherPlayer.bodies.length === 1) {
+                newBodyCpn.addBeforeBody(null);
+            } else {
+                lastBody.getComponent('body').addNextBody(newBody);
+                newBodyCpn.addBeforeBody(lastBody);
+            }
+            newBodyCpn.addBelongHead(otherPlayer.head);
+            newBodyCpn.initBodyZOrder(-otherPlayer.bodies.length - 1);
+        }
+    },
+
+    notifyFirstBodyToUpdatePositions(otherPlayer) {
+        if (otherPlayer.bodies.length > 0) {
+            let firstBodyCpn = otherPlayer.bodies[0].getComponent('body');
+
+            // 通知第一个
+            this.notifyBodiesToUpdatePositions(firstBodyCpn, otherPlayer.head.getComponent('otherHead').historyTimePositions);
+        }
+    },
+
+    notifyBodiesToUpdatePositions(bodyCpn, historyTimePositions) {
+        bodyCpn.updateHistoryPositions();
+        bodyCpn.updateCurrentPositions(historyTimePositions);
+        bodyCpn.updateCurrentTimePositionsIndex();
+
+        // 递归往下通知
+        if (bodyCpn.hasNextBody()) {
+            this.notifyBodiesToUpdatePositions(bodyCpn.nextBody.getComponent('body'), bodyCpn.historyTimePositions);
+        }
     },
 
     changeOtherPlayersHeadDirection() {

@@ -406,6 +406,7 @@
     "_constDirectionTop": "top",
     "_constDirectionBottom": "bottom",
     "direction": "",
+    "positionIncrementPool": [],
     "headCurrentPositionsIncrement": [],
     "currentX": 0,
     "currentY": 0,
@@ -526,6 +527,7 @@
     "historyTimePositions": [],
     "bodyDelayTime": 0.3,
     "accumulativeCount": 0,
+    "runningPositions": [],
     "belongHead": null,
     "beforeBody": null,
     "nextBody": null,
@@ -635,14 +637,17 @@
     "_enabled": true,
     "currentTimePositions": [],
     "historyTimePositions": [],
-    "bodyDelayTime": 0.3,
+    "bodyDelayTime": 0.5,
     "accumulativeCount": 0,
     "_constDirectionLeft": "left",
     "_constDirectionRight": "right",
     "_constDirectionTop": "top",
     "_constDirectionBottom": "bottom",
     "direction": "",
-    "speed": 1
+    "positionIncrementPool": [],
+    "currentX": 0,
+    "currentY": 0,
+    "speed": 150
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -762,14 +767,14 @@
     "player": {
       "__id__": 10
     },
+    "otherPlayer": {
+      "__id__": 20
+    },
     "otherHead": {
       "__uuid__": "ee7902a5-b4eb-4212-b440-dab7046bb4d4"
     },
     "body": {
       "__uuid__": "d9e8289c-c4a6-4c79-be65-6744306f6a34"
-    },
-    "otherPlayer": {
-      "__id__": 19
     },
     "container": {
       "__id__": 3

@@ -27,9 +27,9 @@ cc.Class({
     },
 
     start() {
-        this.increaseBody(this.disabledBodies);
-        this.increaseBody(this.disabledBodies);
-        this.increaseBody(this.disabledBodies);
+        // this.increaseBody(this.disabledBodies);
+        // this.increaseBody(this.disabledBodies);
+        // this.increaseBody(this.disabledBodies);
     },
 
     // update(dt) {},
@@ -85,23 +85,23 @@ cc.Class({
         }
     },
 
-    notifyFirstBodyUpdatePositions() {
+    notifyFirstBodyToUpdatePositions() {
         if (this.bodies.length > 0) {
             let firstBodyCpn = this.bodies[0].getComponent('body');
 
             // 通知第一个
-            this.notifyBodiesUpdatePositions(firstBodyCpn, this.head.historyTimePositions);
+            this.notifyBodiesToUpdatePositions(firstBodyCpn, this.head.historyTimePositions);
         }
     },
 
-    notifyBodiesUpdatePositions(bodyCpn, historyTimePositions) {
+    notifyBodiesToUpdatePositions(bodyCpn, historyTimePositions) {
         bodyCpn.updateHistoryPositions();
         bodyCpn.updateCurrentPositions(historyTimePositions);
         bodyCpn.updateCurrentTimePositionsIndex();
 
         // 递归往下通知
         if (bodyCpn.hasNextBody()) {
-            this.notifyBodiesUpdatePositions(bodyCpn.nextBody.getComponent('body'), bodyCpn.historyTimePositions);
+            this.notifyBodiesToUpdatePositions(bodyCpn.nextBody.getComponent('body'), bodyCpn.historyTimePositions);
         }
     },
 
