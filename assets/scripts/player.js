@@ -1,8 +1,9 @@
 const
-    head = require('head');
+    head = require('head'),
+    basePlayer = require('basePlayer');
 
 cc.Class({
-    extends: cc.Component,
+    extends: basePlayer,
 
     properties: {
         head,
@@ -26,8 +27,9 @@ cc.Class({
     },
 
     start() {
-        this.increaseBody();
-        this.increaseBody();
+        this.increaseBody(this.disabledBodies);
+        this.increaseBody(this.disabledBodies);
+        this.increaseBody(this.disabledBodies);
     },
 
     // update(dt) {},
@@ -60,16 +62,6 @@ cc.Class({
         });
     },
 
-    increaseBody() {
-        let bodyNode = cc.instantiate(this.body);
-
-        this.node.addChild(bodyNode);
-        this.disabledBodies.push(bodyNode);
-
-        bodyNode.setPosition(0, 0);
-        bodyNode.setLocalZOrder(-this.disabledBodies.length - 1);
-    },
-
     activeOneBody() {
         if (this.disabledBodies.length > 0) {
             let newBody = this.disabledBodies.shift();
@@ -85,6 +77,7 @@ cc.Class({
                 newBodyCpn.addBeforeBody(lastBody);
             }
             newBodyCpn.addBelongHead(this.node);
+            newBodyCpn.initBodyZOrder(-this.bodies.length - 1);
         }
     },
 

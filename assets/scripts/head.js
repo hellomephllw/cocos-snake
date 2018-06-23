@@ -4,10 +4,6 @@ cc.Class({
     extends: baseHead,
 
     properties: {
-        container: {
-            default: null,
-            type: cc.Node,
-        },
         headCurrentPositionsIncrement: [],
         currentX: 0,
         currentY: 0,

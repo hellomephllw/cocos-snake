@@ -25,7 +25,16 @@ cc.Class({
     // update (dt) {},
 
     // methods
-    init() {
+    initBodyPositionData(data) {
+        this.currentTimePositions = data;
+    },
+
+    initBodyPosition(data, index) {
+        this.node.setPosition(data[index].x, data[index].y);
+    },
+
+    initBodyZOrder(num) {
+        this.node.setLocalZOrder(num);
     },
 
     updateBody(dt) {
