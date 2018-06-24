@@ -57,16 +57,19 @@
     "_children": [
       {
         "__id__": 3
+      },
+      {
+        "__id__": 22
       }
     ],
     "_tag": -1,
     "_active": true,
     "_components": [
       {
-        "__id__": 22
+        "__id__": 25
       },
       {
-        "__id__": 23
+        "__id__": 26
       }
     ],
     "_prefab": null,
@@ -87,17 +90,17 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 960,
-      "height": 640
+      "width": 667,
+      "height": 375
     },
     "_rotationX": 0,
     "_rotationY": 0,
-    "_scaleX": 0.3,
-    "_scaleY": 0.3,
+    "_scaleX": 1,
+    "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 480,
-      "y": 320
+      "x": 333.5,
+      "y": 187.5
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -349,8 +352,8 @@
     },
     "_rotationX": 0,
     "_rotationY": 0,
-    "_scaleX": 0.2,
-    "_scaleY": 0.2,
+    "_scaleX": 0.1,
+    "_scaleY": 0.1,
     "_position": {
       "__type__": "cc.Vec2",
       "x": 0,
@@ -741,6 +744,120 @@
     }
   },
   {
+    "__type__": "cc.Node",
+    "_name": "static",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 2
+    },
+    "_children": [
+      {
+        "__id__": 23
+      }
+    ],
+    "_tag": -1,
+    "_active": true,
+    "_components": [],
+    "_prefab": null,
+    "_id": "abX2z6S0JM5ZL7CbfzjcC7",
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_cascadeOpacityEnabled": true,
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 0,
+      "height": 0
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": -333.5,
+      "y": -187.5
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0,
+    "_opacityModifyRGB": false,
+    "groupIndex": 0
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "joystick",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 22
+    },
+    "_children": [],
+    "_tag": -1,
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 24
+      }
+    ],
+    "_prefab": null,
+    "_id": "23gZClyBVKIJnn/N2fwLgL",
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_cascadeOpacityEnabled": true,
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 0,
+      "height": 0
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0,
+    "_opacityModifyRGB": false,
+    "groupIndex": 0
+  },
+  {
+    "__type__": "3d7cdL54ddJAquc4v+H3Kpl",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 23
+    },
+    "_enabled": true,
+    "ctx": null
+  },
+  {
     "__type__": "cc.Canvas",
     "_name": "",
     "_objFlags": 0,
@@ -750,11 +867,11 @@
     "_enabled": true,
     "_designResolution": {
       "__type__": "cc.Size",
-      "width": 960,
-      "height": 640
+      "width": 667,
+      "height": 375
     },
-    "_fitWidth": false,
-    "_fitHeight": true
+    "_fitWidth": true,
+    "_fitHeight": false
   },
   {
     "__type__": "adca34KLrZBErPo5RndKkE1",
@@ -778,6 +895,9 @@
     },
     "container": {
       "__id__": 3
+    },
+    "joystick": {
+      "__id__": 23
     }
   }
 ]

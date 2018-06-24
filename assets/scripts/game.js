@@ -20,12 +20,20 @@ cc.Class({
             default: null,
             type: cc.Node,
         },
+        joystick: {
+            default: null,
+            type: cc.Node,
+        }
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
         console.log('load game');
+
+        this.joystick.getComponent('joystick').init();
+
+        cc.director.setDisplayStats(false);
     },
 
     start() {
@@ -39,7 +47,7 @@ cc.Class({
             ]
         };
 
-        this.otherPlayer.create(data);
+        // this.otherPlayer.create(data);
 
         this.gameGlobalInterval(interval => {
             this.player.playerInterval(interval);
@@ -48,6 +56,8 @@ cc.Class({
     },
 
     update(dt) {
+
+        // return ;
         this.player.updatePlayer(dt);
         this.otherPlayer.updateOtherPlayers(dt);
     },
