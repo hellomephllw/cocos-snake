@@ -211,7 +211,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 2800,
-      "height": 1400
+      "height": 2800
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -219,7 +219,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 1,
+      "x": 0,
       "y": 0
     },
     "_skewX": 0,
@@ -230,30 +230,14 @@
     "groupIndex": 0
   },
   {
-    "__type__": "cc.Sprite",
+    "__type__": "32bde9YszdF5LVXznQBRjiS",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 4
     },
     "_enabled": true,
-    "_spriteFrame": {
-      "__uuid__": "17f5d18c-8774-4b62-8e44-0c6252771915"
-    },
-    "_type": 0,
-    "_sizeMode": 0,
-    "_fillType": 0,
-    "_fillCenter": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
-    "_fillStart": 0,
-    "_fillRange": 0,
-    "_isTrimmedMode": true,
-    "_srcBlendFactor": 770,
-    "_dstBlendFactor": 771,
-    "_atlas": null
+    "ctx": null
   },
   {
     "__type__": "cc.Node",
@@ -892,6 +876,9 @@
     },
     "joystick": {
       "__id__": 23
+    },
+    "background": {
+      "__id__": 4
     }
   }
 ]

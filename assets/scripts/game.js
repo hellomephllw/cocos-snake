@@ -23,13 +23,19 @@ cc.Class({
         joystick: {
             default: null,
             type: cc.Node,
-        }
+        },
+        background: {
+            default: null,
+            type: cc.Node,
+        },
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
         console.log('load game');
+
+        this.background.getComponent('background').init();
 
         this.joystick.getComponent('joystick').init();
 
