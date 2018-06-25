@@ -23,13 +23,12 @@ cc.Class({
 
     onLoad() {
         console.log('load player');
-        this.setInputControl();
     },
 
     start() {
-        // this.increaseBody(this.disabledBodies);
-        // this.increaseBody(this.disabledBodies);
-        // this.increaseBody(this.disabledBodies);
+        this.increaseBody(this.disabledBodies);
+        this.increaseBody(this.disabledBodies);
+        this.increaseBody(this.disabledBodies);
     },
 
     // update(dt) {},
@@ -45,25 +44,8 @@ cc.Class({
         this.head.generatePositionIncrement(interval);
     },
 
-    setInputControl() {
-        let headCpn = this.head.getComponent('head');
-        // 添加键盘事件监听
-        cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, event => {
-            switch(event.keyCode) {
-                case cc.KEY.left:
-                    this.head.changeDirection(headCpn._constDirectionLeft);
-                    break;
-                case cc.KEY.right:
-                    this.head.changeDirection(headCpn._constDirectionRight);
-                    break;
-                case cc.KEY.up:
-                    this.head.changeDirection(headCpn._constDirectionTop);
-                    break;
-                case cc.KEY.down:
-                    this.head.changeDirection(headCpn._constDirectionBottom);
-                    break;
-            }
-        });
+    updateAngle(angle) {
+        this.head.changeAngle(angle);
     },
 
     activeOneBody() {

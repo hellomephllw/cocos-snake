@@ -34,6 +34,15 @@ cc.Class({
         this.joystick.getComponent('joystick').init();
 
         cc.director.setDisplayStats(false);
+
+        this.addPlayerToJoystick();
+
+        this.gameGlobalEventListener();
+
+        this.gameGlobalInterval(interval => {
+            this.player.playerInterval(interval);
+            this.otherPlayer.playerInterval(interval);
+        });
     },
 
     start() {
@@ -48,11 +57,6 @@ cc.Class({
         };
 
         // this.otherPlayer.create(data);
-
-        this.gameGlobalInterval(interval => {
-            this.player.playerInterval(interval);
-            this.otherPlayer.playerInterval(interval);
-        });
     },
 
     update(dt) {
@@ -81,6 +85,19 @@ cc.Class({
 
             timer = setTimeout(loop, nextInterval);
         }
+    },
+
+    gameGlobalEventListener() {
+        let joystick = this.joystick.getComponent('joystick');
+        this.node.on(cc.Node.EventType.TOUCH_START, joystick.onTouchStartEventHandler, joystick);
+        this.node.on(cc.Node.EventType.TOUCH_MOVE, joystick.onTouchMoveEventHandler, joystick);
+        this.node.on(cc.Node.EventType.TOUCH_END, joystick.onTouchEndEventHandler, joystick);
+        this.node.on(cc.Node.EventType.TOUCH_CANCEL, joystick.onTouchCancelEventHandler, joystick);
+    },
+
+    addPlayerToJoystick() {
+        let joystick = this.joystick.getComponent('joystick');
+        joystick.playerCpn = this.player;
     },
 
 });

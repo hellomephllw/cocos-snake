@@ -49,8 +49,8 @@
     },
     "_rotationX": 0,
     "_rotationY": 0,
-    "_scaleX": 1,
-    "_scaleY": 1,
+    "_scaleX": 0.4,
+    "_scaleY": 0.4,
     "_position": {
       "__type__": "cc.Vec2",
       "x": -397,
@@ -98,10 +98,13 @@
     },
     "_enabled": true,
     "currentTimePositions": [],
-    "beforeTimePositions": [],
+    "historyTimePositions": [],
     "bodyDelayTime": 0.3,
-    "accumulativeTime": 0.3,
+    "accumulativeCount": 0,
+    "runningPositions": [],
     "belongHead": null,
+    "beforeBody": null,
+    "nextBody": null,
     "currentTimePositionsIndex": 0
   },
   {
@@ -110,7 +113,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "d9e8289c-c4a6-4c79-be65-6744306f6a34"
     },
     "fileId": "5avzNzhk1GzqeSN2eS0gNy",
     "sync": false

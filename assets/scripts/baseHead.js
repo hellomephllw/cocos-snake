@@ -4,11 +4,8 @@ cc.Class({
     extends: baseRole,
 
     properties: {
-        _constDirectionLeft: 'left',
-        _constDirectionRight: 'right',
-        _constDirectionTop: 'top',
-        _constDirectionBottom: 'bottom',
-        direction: '',
+        angle: 0,
+        //避免由于帧数原因引起的抖动
         positionIncrementPool: [],
     },
 
@@ -33,30 +30,20 @@ cc.Class({
     },
 
     getDistanceX() {
-        if (this.direction === this._constDirectionLeft) {
-            return -1 * this.speed;
-        }
-        if (this.direction === this._constDirectionRight) {
-            return this.speed;
-        }
-        return 0;
+        return this.speed * Math.cos(this.angle);
     },
 
     getDistanceY() {
-        if (this.direction === this._constDirectionTop) {
-            return this.speed;
-        }
-        if (this.direction === this._constDirectionBottom) {
-            return -1 * this.speed;
-        }
-        return 0;
+        return this.speed * Math.sin(this.angle);
     },
 
     generatePositionIncrement(interval) {
-        this.positionIncrementPool.push({
-            x: this.getDistanceX() * interval,
-            y: this.getDistanceY() * interval,
-        });
+        if (this.positionIncrementPool.length <= 60) {
+            this.positionIncrementPool.push({
+                x: this.getDistanceX() * interval,
+                y: this.getDistanceY() * interval,
+            });
+        }
     },
 
 });

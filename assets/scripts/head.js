@@ -18,7 +18,6 @@ cc.Class({
 
     start() {
         console.log('start head');
-        this.initDirection();
     },
 
     // update(dt) {},
@@ -40,31 +39,30 @@ cc.Class({
     },
 
     moveAction(dt) {
+        let nextPositionIncrement;
         if (this.positionIncrementPool && this.positionIncrementPool.length > 0) {
-            let nextPositionIncrement = this.positionIncrementPool.shift();
-
-            this.recordCurrentPositionIncrement(nextPositionIncrement);
-
-            let incrementX = nextPositionIncrement.x;
-            let incrementY = nextPositionIncrement.y;
-            this.currentX += incrementX;
-            this.currentY += incrementY;
-            this.node.x += incrementX;
-            this.node.y += incrementY;
-
-            this.recordCurrentPosition();
+            nextPositionIncrement = this.positionIncrementPool.shift();
+        } else {
+            nextPositionIncrement = {
+                x: this.getDistanceX() * dt,
+                y: this.getDistanceY() * dt,
+            }
         }
+
+        this.recordCurrentPositionIncrement(nextPositionIncrement);
+
+        let incrementX = nextPositionIncrement.x;
+        let incrementY = nextPositionIncrement.y;
+        this.currentX += incrementX;
+        this.currentY += incrementY;
+        this.node.x += incrementX;
+        this.node.y += incrementY;
+
+        this.recordCurrentPosition();
     },
 
-    initDirection() {
-        let directions = [this._constDirectionLeft, this._constDirectionRight, this._constDirectionTop, this._constDirectionBottom];
-        if (this.direction === '') {
-            this.direction = directions[parseInt(4 * Math.random())];
-        }
-    },
-
-    changeDirection(direction) {
-        this.direction = direction;
+    changeAngle(angle) {
+        this.angle = angle;
         this.clearPositionIncrementPool();
     },
 
