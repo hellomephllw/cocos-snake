@@ -60,7 +60,7 @@ cc.Class({
             id: 1,
             accumulativeCount: 1,
             angle: 0,
-            headPositions: [{x: -920.5499999999951,y:518.7000000000002}],
+            headPositions: [{x: 100,y: 100}],
             bodiesPosition: [],
         };
 
