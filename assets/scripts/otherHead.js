@@ -35,7 +35,7 @@ cc.Class({
     init(playerData) {
         this.initHeadPositionsData(playerData);
         this.initHeadAccumulativeCount(playerData);
-        this.initHeadDirection(playerData);
+        this.initHeadAngle(playerData);
         this.initHeadPosition(playerData);
         this.initHeadZOrder();
     },
@@ -48,13 +48,8 @@ cc.Class({
         this.accumulativeCount = playerData.accumulativeCount;
     },
 
-    initHeadDirection(playerData) {
-        let directions = [this._constDirectionLeft, this._constDirectionRight, this._constDirectionTop, this._constDirectionBottom];
-        if (this.direction === '' && playerData.direction === '') {
-            this.direction = directions[parseInt(4 * Math.random())];
-        } else {
-            this.direction = playerData.direction;
-        }
+    initHeadAngle(playerData) {
+        this.angle = playerData.angle;
     },
 
     initHeadPosition(playerData) {
@@ -82,6 +77,10 @@ cc.Class({
 
             this.recordCurrentPosition();
         }
+    },
+
+    changeHeadAngle(angle) {
+        this.angle = angle;
     },
 
 });

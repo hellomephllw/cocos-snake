@@ -12,7 +12,7 @@ cc.Class({
             default: null,
             type: cc.Prefab,
         },
-        // 数组元素的数据结构{head: null, bodies: [], disabledBodies: []}
+        // 数组元素的数据结构{id: 1, head: null, bodies: [], disabledBodies: []}
         otherPlayers: [],
     },
 
@@ -40,16 +40,19 @@ cc.Class({
         });
     },
 
-    // playerData的数据结构{accumulativeCount: 0, direction: '', headPositions: [], bodiesPosition: []}
+    // playerData的数据结构{accumulativeCount: 0, angle: '', headPositions: [], bodiesPosition: []}
     // bodiesPosition的数据结构[[{x: 0, y: 0}, {x: 0, y: 0}], [{x: 0, y:0}, {x: 0, y:0}]]
     create(playerData) {
         console.log('other player create');
-        let otherPlayer = {head: null, bodies: [], disabledBodies: []};
+        let otherPlayer = {id: playerData.id, head: null, bodies: [], disabledBodies: []};
 
         this.createHead(otherPlayer);
         this.createBodies(otherPlayer, playerData);
 
         this.init(otherPlayer, playerData);
+
+        this.increaseBody(otherPlayer.disabledBodies);
+        this.increaseBody(otherPlayer.disabledBodies);
 
         this.otherPlayers.push(otherPlayer);
     },
@@ -155,8 +158,11 @@ cc.Class({
         }
     },
 
-    changeOtherPlayersHeadDirection() {
-
+    changeOtherPlayersHeadDirection(changeInfo) {
+        let otherPlayer = this.otherPlayers.find(otherPlayer => changeInfo.id === otherPlayer.id);
+        if (otherPlayer) {
+            otherPlayer.head.getComponent('otherHead').changeHeadAngle(changeInfo.angle);
+        }
     },
 
 });
