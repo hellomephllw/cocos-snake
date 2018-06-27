@@ -22,6 +22,11 @@ cc.Class({
 
     // update(dt) {},
 
+    onCollisionEnter(other, self) {
+        // console.log('on collision enter');
+        // console.log(other, self);
+    },
+
     // methods
     updateHead(dt) {
         let playerCpn = this.node.parent.getComponent('player');

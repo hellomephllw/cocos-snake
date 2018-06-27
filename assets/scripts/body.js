@@ -24,6 +24,10 @@ cc.Class({
 
     // update (dt) {},
 
+    onCollisionEnter(other, self) {
+        // console.log('on collision enter');
+    },
+
     // methods
     initBodyPositionData(data) {
         this.currentTimePositions = data;

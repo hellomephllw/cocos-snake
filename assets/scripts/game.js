@@ -35,6 +35,11 @@ cc.Class({
     onLoad() {
         console.log('load game');
 
+        let manager = cc.director.getCollisionManager();
+        manager.enabled = true;
+        manager.enabledDebugDraw = true;
+
+
         this.background.getComponent('background').init();
 
         this.joystick.getComponent('joystick').init();
